@@ -1,0 +1,13 @@
+local hide = script.Parent
+
+function onButtonClicked() 
+	if hide.Visible == true then
+		hide.Visible = false
+	end
+	if error then 
+		hide.Visible = false
+	end
+	
+end
+
+script.Parent.MouseButton1Click:connect(onButtonClicked)
