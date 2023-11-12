@@ -33,7 +33,7 @@ local Page2 = Instance.new("Frame")
 local TextLabel_3 = Instance.new("TextLabel")
 local excavator = Instance.new("TextButton")
 local newpage_2 = Instance.new("TextButton")
-local GrabKnife = Instance.new("TextButton")
+local Music = Instance.new("TextButton")
 
 --Properties:
 
@@ -374,17 +374,18 @@ newpage_2.Text = "<---"
 newpage_2.TextColor3 = Color3.fromRGB(0, 0, 0)
 newpage_2.TextSize = 22.000
 
-GrabKnife.Name = "GrabKnife"
-GrabKnife.Parent = Page2
-GrabKnife.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-GrabKnife.BorderColor3 = Color3.fromRGB(0, 0, 0)
-GrabKnife.BorderSizePixel = 0
-GrabKnife.Position = UDim2.new(0.0297029708, 0, 0.232240438, 0)
-GrabKnife.Size = UDim2.new(0, 151, 0, 38)
-GrabKnife.Font = Enum.Font.SourceSans
-GrabKnife.Text = "Grab Knife v1"
-GrabKnife.TextColor3 = Color3.fromRGB(0, 0, 0)
-GrabKnife.TextSize = 14.000
+Music.Name = "Music"
+Music.Parent = Page2
+Music.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Music.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Music.BorderSizePixel = 0
+Music.Position = UDim2.new(0.0297029708, 0, 0.232240438, 0)
+Music.Size = UDim2.new(0, 151, 0, 38)
+Music.Font = Enum.Font.SourceSans
+Music.Text = " Music"
+Music.TextColor3 = Color3.fromRGB(0, 0, 0)
+Music.TextSize = 14.000
+
 
 
 Page2.Active = true
@@ -629,3 +630,9 @@ end)
 GrabKnife.MouseButton1Down:connect(function()
 	require(14638461547).GKV1(plrname)
 end)
+
+Music.MouseButton1Down:connect(function()
+	s.SoundId = "http://www.roblox.com/asset/?id=1837463468"
+	s:play()	
+end)
+
