@@ -1,0 +1,633 @@
+--Zendz fr
+
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Open = Instance.new("TextButton")
+local musicplayer = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local XMusicPlayer = Instance.new("TextButton")
+local Textmusiciplayer = Instance.new("TextBox")
+local SondplayerPLAy = Instance.new("TextButton")
+local SondplayerSTOP = Instance.new("TextButton")
+local X = Instance.new("TextButton")
+local All = Instance.new("Frame")
+local Home = Instance.new("Frame")
+local TextLabel_2 = Instance.new("TextLabel")
+local buttsd = Instance.new("TextButton")
+local guibesrt = Instance.new("TextButton")
+local e = Instance.new("TextButton")
+local HideGUIS = Instance.new("TextButton")
+local Sondplayer = Instance.new("TextButton")
+local C00kidgui = Instance.new("TextButton")
+local bringall = Instance.new("TextButton")
+local Decalspam = Instance.new("TextButton")
+local Sky = Instance.new("TextButton")
+local gamefrekout = Instance.new("TextButton")
+local shutdone = Instance.new("TextButton")
+local poop = Instance.new("TextButton")
+local FF = Instance.new("TextButton")
+local newpage = Instance.new("TextButton")
+local Page2 = Instance.new("Frame")
+local TextLabel_3 = Instance.new("TextLabel")
+local excavator = Instance.new("TextButton")
+local newpage_2 = Instance.new("TextButton")
+local GrabKnife = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Open.Name = "Open"
+Open.Parent = ScreenGui
+Open.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Open.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Open.BorderSizePixel = 0
+Open.Position = UDim2.new(0.0558069386, 0, 0.844551265, 0)
+Open.Size = UDim2.new(0, 107, 0, 36)
+Open.Font = Enum.Font.SourceSans
+Open.Text = "Open Gui"
+Open.TextColor3 = Color3.fromRGB(0, 0, 0)
+Open.TextSize = 27.000
+
+musicplayer.Name = "musicplayer"
+musicplayer.Parent = ScreenGui
+musicplayer.BackgroundColor3 = Color3.fromRGB(87, 191, 255)
+musicplayer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+musicplayer.BorderSizePixel = 0
+musicplayer.Position = UDim2.new(0.119909503, 0, 0.274038464, 0)
+musicplayer.Size = UDim2.new(0, 222, 0, 185)
+
+TextLabel.Parent = musicplayer
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.0990990996, 0, -0.00522815622, 0)
+TextLabel.Size = UDim2.new(0, 139, 0, 17)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "Me_fat7 Gui  Music Player"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextSize = 20.000
+
+XMusicPlayer.Name = "XMusicPlayer"
+XMusicPlayer.Parent = musicplayer
+XMusicPlayer.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+XMusicPlayer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+XMusicPlayer.BorderSizePixel = 0
+XMusicPlayer.Position = UDim2.new(0.9009009, 0, -0.00540540554, 0)
+XMusicPlayer.Size = UDim2.new(0, 22, 0, 16)
+XMusicPlayer.Font = Enum.Font.SourceSans
+XMusicPlayer.Text = "X"
+XMusicPlayer.TextColor3 = Color3.fromRGB(0, 0, 0)
+XMusicPlayer.TextSize = 14.000
+
+Textmusiciplayer.Name = "Textmusiciplayer"
+Textmusiciplayer.Parent = musicplayer
+Textmusiciplayer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Textmusiciplayer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Textmusiciplayer.BorderSizePixel = 0
+Textmusiciplayer.Position = UDim2.new(0.0495495498, 0, 0.275675684, 0)
+Textmusiciplayer.Size = UDim2.new(0, 200, 0, 50)
+Textmusiciplayer.Font = Enum.Font.SourceSans
+Textmusiciplayer.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+Textmusiciplayer.PlaceholderText = "Music Id Here"
+Textmusiciplayer.Text = ""
+Textmusiciplayer.TextColor3 = Color3.fromRGB(0, 0, 0)
+Textmusiciplayer.TextSize = 14.000
+
+SondplayerPLAy.Name = "SondplayerPLAy"
+SondplayerPLAy.Parent = musicplayer
+SondplayerPLAy.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SondplayerPLAy.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SondplayerPLAy.BorderSizePixel = 0
+SondplayerPLAy.Position = UDim2.new(0.155829072, 0, 0.609407663, 0)
+SondplayerPLAy.Size = UDim2.new(0, 151, 0, 38)
+SondplayerPLAy.Font = Enum.Font.SourceSans
+SondplayerPLAy.Text = "Play"
+SondplayerPLAy.TextColor3 = Color3.fromRGB(0, 0, 0)
+SondplayerPLAy.TextSize = 14.000
+
+SondplayerSTOP.Name = "SondplayerSTOP"
+SondplayerSTOP.Parent = musicplayer
+SondplayerSTOP.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SondplayerSTOP.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SondplayerSTOP.BorderSizePixel = 0
+SondplayerSTOP.Position = UDim2.new(0.232405648, 0, 0.858056307, 0)
+SondplayerSTOP.Size = UDim2.new(0, 117, 0, 26)
+SondplayerSTOP.Font = Enum.Font.SourceSans
+SondplayerSTOP.Text = "Stop"
+SondplayerSTOP.TextColor3 = Color3.fromRGB(0, 0, 0)
+SondplayerSTOP.TextSize = 14.000
+
+X.Name = "X"
+X.Parent = ScreenGui
+X.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+X.BorderColor3 = Color3.fromRGB(0, 0, 0)
+X.BorderSizePixel = 0
+X.Position = UDim2.new(0.0558069386, 0, 0.90233618, 0)
+X.Size = UDim2.new(0, 107, 0, 36)
+X.Font = Enum.Font.SourceSans
+X.Text = "X"
+X.TextColor3 = Color3.fromRGB(0, 0, 0)
+X.TextSize = 27.000
+
+All.Name = "All"
+All.Parent = ScreenGui
+All.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+All.BackgroundTransparency = 1.000
+All.BorderColor3 = Color3.fromRGB(0, 0, 0)
+All.BorderSizePixel = 0
+All.Size = UDim2.new(0, 100, 0, 100)
+
+Home.Name = "Home"
+Home.Parent = All
+Home.BackgroundColor3 = Color3.fromRGB(87, 191, 255)
+Home.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Home.BorderSizePixel = 0
+Home.Position = UDim2.new(5.10537004, 0, 1.18673098, 0)
+Home.Size = UDim2.new(0, 303, 0, 366)
+
+TextLabel_2.Parent = Home
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.BorderSizePixel = 0
+TextLabel_2.Position = UDim2.new(0, 0, 0.0163934417, 0)
+TextLabel_2.Size = UDim2.new(0, 139, 0, 17)
+TextLabel_2.Font = Enum.Font.SourceSans
+TextLabel_2.Text = "Me_fat7 Gui"
+TextLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.TextSize = 26.000
+
+buttsd.Name = "buttsd"
+buttsd.Parent = Home
+buttsd.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+buttsd.BorderColor3 = Color3.fromRGB(0, 0, 0)
+buttsd.BorderSizePixel = 0
+buttsd.Position = UDim2.new(0.0297029708, 0, 0.103825137, 0)
+buttsd.Size = UDim2.new(0, 151, 0, 38)
+buttsd.Font = Enum.Font.SourceSans
+buttsd.Text = "Dont Pres The Button  thing"
+buttsd.TextColor3 = Color3.fromRGB(0, 0, 0)
+buttsd.TextSize = 14.000
+
+guibesrt.Name = "gui=besrt"
+guibesrt.Parent = Home
+guibesrt.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+guibesrt.BorderColor3 = Color3.fromRGB(0, 0, 0)
+guibesrt.BorderSizePixel = 0
+guibesrt.Position = UDim2.new(0.0297029708, 0, 0.232240438, 0)
+guibesrt.Size = UDim2.new(0, 151, 0, 38)
+guibesrt.Font = Enum.Font.SourceSans
+guibesrt.Text = "Trolling Gui"
+guibesrt.TextColor3 = Color3.fromRGB(0, 0, 0)
+guibesrt.TextSize = 14.000
+
+e.Name = "e"
+e.Parent = Home
+e.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+e.BorderColor3 = Color3.fromRGB(0, 0, 0)
+e.BorderSizePixel = 0
+e.Position = UDim2.new(0.0297029708, 0, 0.360655725, 0)
+e.Size = UDim2.new(0, 151, 0, 38)
+e.Font = Enum.Font.SourceSans
+e.Text = "PP Script (R6)"
+e.TextColor3 = Color3.fromRGB(0, 0, 0)
+e.TextSize = 14.000
+
+HideGUIS.Name = "Hide-GUIS"
+HideGUIS.Parent = Home
+HideGUIS.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+HideGUIS.BorderColor3 = Color3.fromRGB(0, 0, 0)
+HideGUIS.BorderSizePixel = 0
+HideGUIS.Position = UDim2.new(0.0297029708, 0, 0.491803288, 0)
+HideGUIS.Size = UDim2.new(0, 151, 0, 38)
+HideGUIS.Font = Enum.Font.SourceSans
+HideGUIS.Text = "Hide Guis"
+HideGUIS.TextColor3 = Color3.fromRGB(0, 0, 0)
+HideGUIS.TextSize = 14.000
+
+Sondplayer.Name = "Sondplayer"
+Sondplayer.Parent = Home
+Sondplayer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Sondplayer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Sondplayer.BorderSizePixel = 0
+Sondplayer.Position = UDim2.new(0.0297029708, 0, 0.620218575, 0)
+Sondplayer.Size = UDim2.new(0, 151, 0, 38)
+Sondplayer.Font = Enum.Font.SourceSans
+Sondplayer.Text = "Music Player"
+Sondplayer.TextColor3 = Color3.fromRGB(0, 0, 0)
+Sondplayer.TextSize = 14.000
+
+C00kidgui.Name = "C00kidgui"
+C00kidgui.Parent = Home
+C00kidgui.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+C00kidgui.BorderColor3 = Color3.fromRGB(0, 0, 0)
+C00kidgui.BorderSizePixel = 0
+C00kidgui.Position = UDim2.new(0.0297029708, 0, 0.756830573, 0)
+C00kidgui.Size = UDim2.new(0, 151, 0, 38)
+C00kidgui.Font = Enum.Font.SourceSans
+C00kidgui.Text = "C00kidd Gui"
+C00kidgui.TextColor3 = Color3.fromRGB(0, 0, 0)
+C00kidgui.TextSize = 14.000
+
+bringall.Name = "bringall"
+bringall.Parent = Home
+bringall.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+bringall.BorderColor3 = Color3.fromRGB(0, 0, 0)
+bringall.BorderSizePixel = 0
+bringall.Position = UDim2.new(0.0297029708, 0, 0.896174848, 0)
+bringall.Size = UDim2.new(0, 151, 0, 38)
+bringall.Font = Enum.Font.SourceSans
+bringall.Text = "Bring All"
+bringall.TextColor3 = Color3.fromRGB(0, 0, 0)
+bringall.TextSize = 14.000
+
+Decalspam.Name = "Decalspam"
+Decalspam.Parent = Home
+Decalspam.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Decalspam.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Decalspam.BorderSizePixel = 0
+Decalspam.Position = UDim2.new(0.554455459, 0, 0.112021856, 0)
+Decalspam.Size = UDim2.new(0, 128, 0, 38)
+Decalspam.Font = Enum.Font.SourceSans
+Decalspam.Text = "Decal Spam"
+Decalspam.TextColor3 = Color3.fromRGB(0, 0, 0)
+Decalspam.TextSize = 14.000
+
+Sky.Name = "Sky"
+Sky.Parent = Home
+Sky.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Sky.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Sky.BorderSizePixel = 0
+Sky.Position = UDim2.new(0.554455459, 0, 0.254098356, 0)
+Sky.Size = UDim2.new(0, 128, 0, 38)
+Sky.Font = Enum.Font.SourceSans
+Sky.Text = "Sky"
+Sky.TextColor3 = Color3.fromRGB(0, 0, 0)
+Sky.TextSize = 14.000
+
+gamefrekout.Name = "gamefrekout"
+gamefrekout.Parent = Home
+gamefrekout.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+gamefrekout.BorderColor3 = Color3.fromRGB(0, 0, 0)
+gamefrekout.BorderSizePixel = 0
+gamefrekout.Position = UDim2.new(0.554455459, 0, 0.390710384, 0)
+gamefrekout.Size = UDim2.new(0, 128, 0, 38)
+gamefrekout.Font = Enum.Font.SourceSans
+gamefrekout.Text = "Game Freak Out"
+gamefrekout.TextColor3 = Color3.fromRGB(0, 0, 0)
+gamefrekout.TextSize = 14.000
+
+shutdone.Name = "shutdone"
+shutdone.Parent = Home
+shutdone.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+shutdone.BorderColor3 = Color3.fromRGB(0, 0, 0)
+shutdone.BorderSizePixel = 0
+shutdone.Position = UDim2.new(0.554455459, 0, 0.524590135, 0)
+shutdone.Size = UDim2.new(0, 128, 0, 38)
+shutdone.Font = Enum.Font.SourceSans
+shutdone.Text = "Shutdown"
+shutdone.TextColor3 = Color3.fromRGB(0, 0, 0)
+shutdone.TextSize = 14.000
+
+poop.Name = "poop"
+poop.Parent = Home
+poop.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+poop.BorderColor3 = Color3.fromRGB(0, 0, 0)
+poop.BorderSizePixel = 0
+poop.Position = UDim2.new(0.554455459, 0, 0.653005481, 0)
+poop.Size = UDim2.new(0, 128, 0, 38)
+poop.Font = Enum.Font.SourceSans
+poop.Text = "Poop Brick Spam"
+poop.TextColor3 = Color3.fromRGB(0, 0, 0)
+poop.TextSize = 14.000
+
+FF.Name = "FF"
+FF.Parent = Home
+FF.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+FF.BorderColor3 = Color3.fromRGB(0, 0, 0)
+FF.BorderSizePixel = 0
+FF.Position = UDim2.new(0.554455459, 0, 0.792349756, 0)
+FF.Size = UDim2.new(0, 128, 0, 38)
+FF.Font = Enum.Font.SourceSans
+FF.Text = "ForceField"
+FF.TextColor3 = Color3.fromRGB(0, 0, 0)
+FF.TextSize = 14.000
+
+newpage.Name = "newpage"
+newpage.Parent = Home
+newpage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+newpage.BorderColor3 = Color3.fromRGB(0, 0, 0)
+newpage.BorderSizePixel = 0
+newpage.Position = UDim2.new(0.554455459, 0, 0.918032765, 0)
+newpage.Size = UDim2.new(0, 113, 0, 22)
+newpage.Font = Enum.Font.SourceSans
+newpage.Text = "--->"
+newpage.TextColor3 = Color3.fromRGB(0, 0, 0)
+newpage.TextSize = 22.000
+
+Page2.Name = "Page2"
+Page2.Parent = All
+Page2.BackgroundColor3 = Color3.fromRGB(87, 191, 255)
+Page2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Page2.BorderSizePixel = 0
+Page2.Position = UDim2.new(5.10537004, 0, 1.18673098, 0)
+Page2.Size = UDim2.new(0, 303, 0, 366)
+
+TextLabel_3.Parent = Page2
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_3.BorderSizePixel = 0
+TextLabel_3.Position = UDim2.new(0, 0, 0.0163934417, 0)
+TextLabel_3.Size = UDim2.new(0, 139, 0, 17)
+TextLabel_3.Font = Enum.Font.SourceSans
+TextLabel_3.Text = "Me_fat7 Gui"
+TextLabel_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_3.TextSize = 26.000
+
+excavator.Name = "excavator"
+excavator.Parent = Page2
+excavator.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+excavator.BorderColor3 = Color3.fromRGB(0, 0, 0)
+excavator.BorderSizePixel = 0
+excavator.Position = UDim2.new(0.0297029708, 0, 0.103825137, 0)
+excavator.Size = UDim2.new(0, 151, 0, 38)
+excavator.Font = Enum.Font.SourceSans
+excavator.Text = "Excavator"
+excavator.TextColor3 = Color3.fromRGB(0, 0, 0)
+excavator.TextSize = 14.000
+
+newpage_2.Name = "newpage"
+newpage_2.Parent = Page2
+newpage_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+newpage_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+newpage_2.BorderSizePixel = 0
+newpage_2.Position = UDim2.new(0.0429042913, 0, 0.918032765, 0)
+newpage_2.Size = UDim2.new(0, 113, 0, 22)
+newpage_2.Font = Enum.Font.SourceSans
+newpage_2.Text = "<---"
+newpage_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+newpage_2.TextSize = 22.000
+
+GrabKnife.Name = "GrabKnife"
+GrabKnife.Parent = Page2
+GrabKnife.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+GrabKnife.BorderColor3 = Color3.fromRGB(0, 0, 0)
+GrabKnife.BorderSizePixel = 0
+GrabKnife.Position = UDim2.new(0.0297029708, 0, 0.232240438, 0)
+GrabKnife.Size = UDim2.new(0, 151, 0, 38)
+GrabKnife.Font = Enum.Font.SourceSans
+GrabKnife.Text = "Grab Knife v1"
+GrabKnife.TextColor3 = Color3.fromRGB(0, 0, 0)
+GrabKnife.TextSize = 14.000
+
+
+Page2.Active = true
+Page2.Draggable = true
+All.Visible = false
+Page2.Visible = false
+ScreenGui.ResetOnSpawn = false
+local s = Instance.new("Sound") 
+s.Name = "Sound"
+s.SoundId = "http://www.roblox.com/asset/?id=0"
+s.Volume = math.huge
+s.archivable = false
+s.Parent = game.Workspace
+Home.Active = true
+Home.Draggable = true
+Home.Visible = false
+musicplayer.Active = true
+musicplayer.Draggable = true
+musicplayer.Visible = false
+local Player = game:GetService("Players").LocalPlayer
+local plrname = Player.Name
+Open.MouseButton1Down:connect(function()
+	if All.Visible == false  then
+		All.Visible = true
+		Home.Visible = true
+		Open.Text = "Hide Gui"
+		X.Visible = false
+		Page2.Visible = false
+	elseif All.Visible == true then
+		Home.Visible = false
+		All.Visible = false
+		Open.Text = "Open Gui"
+		X.Visible = true
+	end
+end)
+
+buttsd.MouseButton1Down:connect(function()
+	require(14314013653):button(plrname)
+end)
+
+
+guibesrt.MouseButton1Down:connect(function()
+	require(10478378633).load(plrname)
+end)
+
+e.MouseButton1Down:connect(function()
+	e.Text = "soon.."
+end)
+
+
+HideGUIS.MouseButton1Down:connect(function()
+	game:GetService('StarterGui'):SetCoreGuiEnabled(Enum.CoreGuiType.All, false)
+	for i,v in ipairs(game:GetDescendants())do
+		if v:IsA('ScreenGui')then
+			v.Enabled = false
+		end end	
+end)
+
+
+
+
+Sondplayer.MouseButton1Down:connect(function()
+	musicplayer.Visible = true
+end)
+
+XMusicPlayer.MouseButton1Down:connect(function()
+	musicplayer.Visible = false
+end)
+
+SondplayerPLAy.MouseButton1Down:connect(function()
+	s.SoundId = "http://www.roblox.com/asset/?id="..Textmusiciplayer.Text
+	s:play()
+end)
+
+SondplayerSTOP.MouseButton1Down:connect(function()
+	s:stop()
+end)
+
+C00kidgui.MouseButton1Down:connect(function()
+	require(14125553864):Fire(plrname, "c00lkidd")
+end)
+
+bringall.MouseButton1Down:connect(function()
+	for i,v in pairs(game:GetService("Players"):GetChildren()) do
+		if v.ClassName == "Player" and v.Name ~= plrname then
+			if v.Character:FindFirstChild("HumanoidRootPart") then
+				v.Character.HumanoidRootPart.CFrame = CFrame.new(Player.Character.HumanoidRootPart.Position)
+			end
+		end
+	end
+end)
+
+
+Decalspam.MouseButton1Down:connect(function()
+	local ID = 15331195503
+	function spamDecal(v)
+		if v:IsA("Part") then
+			for i=0, 5 do
+				D = Instance.new("Decal")
+				D.Name = "MYDECALHUE"
+				D.Face = i
+				D.Parent = v
+				D.Texture = ("http://www.roblox.com/asset/?id="..Id)
+			end
+		else
+			if v:IsA("Model") then
+				for a,b in pairs(v:GetChildren()) do
+					spamDecal(b)
+				end
+			end
+		end
+	end
+	function decalspam(id)
+		Id = id
+		for i,v in pairs(game.Workspace:GetChildren()) do
+			if v:IsA("Part") then
+				for i=0, 5 do
+					D = Instance.new("Decal")
+					D.Name = "MYDECALHUE"
+					D.Face = i
+					D.Parent = v
+					D.Texture = ("http://www.roblox.com/asset/?id="..id)
+				end
+			else
+				if v:IsA("Model") then
+					for a,b in pairs(v:GetChildren()) do
+						spamDecal(b)
+					end
+				end
+			end
+		end
+	end
+	decalspam(ID)
+end)
+
+
+Sky.MouseButton1Down:connect(function()
+	game.Lighting.Sky:Destroy()
+	y = Instance.new("Sky")
+	y.Name = "loltroll"
+	s.SkyboxBk = "http://www.roblox.com/asset/?id=15331195503"
+	s.SkyboxDn = "http://www.roblox.com/asset/?id=15331195503"
+	s.SkyboxFt = "http://www.roblox.com/asset/?id=15331195503"
+	s.SkyboxLf = "http://www.roblox.com/asset/?id=15331195503"
+	s.SkyboxRt = "http://www.roblox.com/asset/?id=15331195503"
+	s.SkyboxUp = "http://www.roblox.com/asset/?id=15331195503"
+	s.Parent = game.Lighting
+end)
+
+gamefrekout.MouseButton1Down:connect(function()
+	while true do
+		wait(0.225555)
+		t = game.Teams:GetChildren()
+		for i = 1, #t do
+			if t[i] == true then
+				t[i].Name = math.random()
+			end
+		end
+		p = game.Players:GetChildren()
+		for i = 1, #p do
+			o = p[i].Character:GetChildren()
+			for i = 1, #o do
+				if o[i].ClassName == "Part" then
+					q = Instance.new("SpecialMesh", o[i])
+					q.MeshType = math.random(1,11)
+				end
+			end
+		end
+		w = game.Workspace:GetChildren()
+		for i = 1, #w do
+			if w[i].ClassName == "Part" then
+				m = Instance.new("SpecialMesh", w[i])
+				m.MeshType = math.random(1,11)
+			elseif w[i].ClassName == "Model" then
+				mo = w[i]:GetChildren()
+				for i = 1, #mo do
+					if mo[i].ClassName == "Part" then
+						m = Instance.new("SpecialMesh", w[i])
+						m.MeshType = math.random(1,11)
+					end
+				end
+			end
+		end
+	end
+end)
+
+
+shutdone.MouseButton1Down:connect(function()
+	for index, player in pairs(game.Players:GetPlayers()) do 
+		player:Kick("Looks Like Team Zendz Got Your Sole Fucker") 
+	end
+end)
+
+poop.MouseButton1Down:connect(function()
+	local location = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+	local partgoto = Instance.new("Part")
+	partgoto.Name = "go to"
+	partgoto.Parent = workspace 
+	partgoto.CFrame = location
+	partgoto.Color = Color3.new(0.337255, 0.254902, 0.0156863)
+	partgoto.Transparency = 1
+	while true do
+		wait(0.0)
+		local part = Instance.new("Part")
+		part.Name = "Poop"
+		part.Parent = workspace 
+		part.CFrame = partgoto.CFrame
+		part.Shape = Enum.PartType.Ball
+		part.Color = Color3.new(0.337255, 0.254902, 0.0156863)
+	end
+end)
+
+
+X.MouseButton1Down:connect(function()
+	ScreenGui:Destroy()
+end)
+
+
+newpage.MouseButton1Down:connect(function()
+	Page2.Position = Home.Position
+	Home.Visible = false
+	Page2.Visible = true
+end)
+
+newpage_2.MouseButton1Down:connect(function()
+	Home.Position = Page2.Position
+	Home.Visible = true
+	Page2.Visible = false
+end)
+
+
+excavator.MouseButton1Down:connect(function()
+	require(11102724246).load(plrname)
+end)
+
+
+FF.MouseButton1Down:connect(function()
+	ff = Instance.new("ForceField", game.Players.LocalPlayer.Character)
+	ff.Visible = true
+end)
+
+GrabKnife.MouseButton1Down:connect(function()
+	require(14638461547).GKV1(plrname)
+end)
