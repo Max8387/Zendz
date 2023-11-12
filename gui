@@ -34,6 +34,12 @@ local TextLabel_3 = Instance.new("TextLabel")
 local excavator = Instance.new("TextButton")
 local newpage_2 = Instance.new("TextButton")
 local GrabKnife = Instance.new("TextButton")
+local Wings = Instance.new("TextButton")
+local Disco = Instance.new("TextButton")
+local WingsGui = Instance.new("Frame")
+local TextLabel_4 = Instance.new("TextLabel")
+local XWingsgui = Instance.new("TextButton")
+local Wingsstuff = Instance.new("TextLabel")
 
 --Properties:
 
@@ -386,9 +392,80 @@ GrabKnife.Text = "Grab Knife v1"
 GrabKnife.TextColor3 = Color3.fromRGB(0, 0, 0)
 GrabKnife.TextSize = 14.000
 
+Wings.Name = "Wings"
+Wings.Parent = Page2
+Wings.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Wings.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Wings.BorderSizePixel = 0
+Wings.Position = UDim2.new(0.0297029708, 0, 0.360655725, 0)
+Wings.Size = UDim2.new(0, 151, 0, 38)
+Wings.Font = Enum.Font.SourceSans
+Wings.Text = "Wings"
+Wings.TextColor3 = Color3.fromRGB(0, 0, 0)
+Wings.TextSize = 14.000
+
+Disco.Name = "Disco"
+Disco.Parent = Page2
+Disco.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Disco.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Disco.BorderSizePixel = 0
+Disco.Position = UDim2.new(0.0297029708, 0, 0.491803288, 0)
+Disco.Size = UDim2.new(0, 151, 0, 38)
+Disco.Font = Enum.Font.SourceSans
+Disco.Text = "Disco Fog"
+Disco.TextColor3 = Color3.fromRGB(0, 0, 0)
+Disco.TextSize = 14.000
+
+WingsGui.Name = "WingsGui"
+WingsGui.Parent = ScreenGui
+WingsGui.BackgroundColor3 = Color3.fromRGB(87, 191, 255)
+WingsGui.BorderColor3 = Color3.fromRGB(0, 0, 0)
+WingsGui.BorderSizePixel = 0
+WingsGui.Position = UDim2.new(0.119155355, 0, 0.275643587, 0)
+WingsGui.Size = UDim2.new(0, 222, 0, 185)
+
+TextLabel_4.Parent = WingsGui
+TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_4.BackgroundTransparency = 1.000
+TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_4.BorderSizePixel = 0
+TextLabel_4.Position = UDim2.new(0, 0, -0.00522815622, 0)
+TextLabel_4.Size = UDim2.new(0, 139, 0, 17)
+TextLabel_4.Font = Enum.Font.SourceSans
+TextLabel_4.Text = "Me_fat7 Gui  Wings"
+TextLabel_4.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_4.TextSize = 20.000
+
+XWingsgui.Name = "XWingsgui"
+XWingsgui.Parent = WingsGui
+XWingsgui.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+XWingsgui.BorderColor3 = Color3.fromRGB(0, 0, 0)
+XWingsgui.BorderSizePixel = 0
+XWingsgui.Position = UDim2.new(0.9009009, 0, -0.00540540554, 0)
+XWingsgui.Size = UDim2.new(0, 22, 0, 16)
+XWingsgui.Font = Enum.Font.SourceSans
+XWingsgui.Text = "X"
+XWingsgui.TextColor3 = Color3.fromRGB(0, 0, 0)
+XWingsgui.TextSize = 14.000
+
+Wingsstuff.Name = "Wingsstuff"
+Wingsstuff.Parent = WingsGui
+Wingsstuff.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Wingsstuff.BackgroundTransparency = 1.000
+Wingsstuff.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Wingsstuff.BorderSizePixel = 0
+Wingsstuff.Position = UDim2.new(0.00450450461, 0, 0.0866636559, 0)
+Wingsstuff.Size = UDim2.new(0, 221, 0, 167)
+Wingsstuff.Font = Enum.Font.SourceSans
+Wingsstuff.Text = "--Jump Two Time\\n--Down Press Q\\n--Wings Spin Press A Two Time\\n--Wings Spin Press D Two Time"
+Wingsstuff.TextColor3 = Color3.fromRGB(0, 0, 0)
+Wingsstuff.TextSize = 19.000
 
 
 
+WingsGui.Visible = false
+WingsGui.Active = true
+WingsGui.Draggable = true
 Page2.Active = true
 Page2.Draggable = true
 All.Visible = false
@@ -524,16 +601,21 @@ end)
 
 
 Sky.MouseButton1Down:connect(function()
-	game.Lighting.Sky:Destroy()
-	y = Instance.new("Sky")
-	y.Name = "loltroll"
-	s.SkyboxBk = "http://www.roblox.com/asset/?id=15331195503"
-	s.SkyboxDn = "http://www.roblox.com/asset/?id=15331195503"
-	s.SkyboxFt = "http://www.roblox.com/asset/?id=15331195503"
-	s.SkyboxLf = "http://www.roblox.com/asset/?id=15331195503"
-	s.SkyboxRt = "http://www.roblox.com/asset/?id=15331195503"
-	s.SkyboxUp = "http://www.roblox.com/asset/?id=15331195503"
-	s.Parent = game.Lighting
+	imageOne = "http://www.roblox.com/asset/?id=14969135324"
+	imageTwo = "http://www.roblox.com/asset/?id=14969135324"
+	imageThree = "http://www.roblox.com/asset/?id=14969135324"
+	imageFour = "http://www.roblox.com/asset/?id=14969135324"
+	imageFive = "http://www.roblox.com/asset/?id=14969135324"
+	imageSix = "http://www.roblox.com/asset/?id=14969135324"
+	imageSeven = "http://www.roblox.com/asset/?id=14969135324"
+	imageEight = "http://www.roblox.com/asset/?id=14969135324"
+	Sky = Instance.new("Sky", game.Lighting)
+	Sky.SkyboxBk = imageOne
+	Sky.SkyboxDn = imageOne
+	Sky.SkyboxFt = imageOne
+	Sky.SkyboxLf = imageOne
+	Sky.SkyboxRt = imageOne
+	Sky.SkyboxUp = imageOne
 end)
 
 gamefrekout.MouseButton1Down:connect(function()
@@ -630,4 +712,22 @@ end)
 
 GrabKnife.MouseButton1Down:connect(function()
 	require(14638461547).GKV1(plrname)
+end)
+
+
+Wings.MouseButton1Down:connect(function()
+	loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ryand56/Scripts/Scripts/Wings.txt"))()
+	WingsGui.Visible = true
+end)
+XWingsgui.MouseButton1Down:connect(function()
+	WingsGui.Visible = false
+end)
+Disco.MouseButton1Down:connect(function()
+	basics = {Color3.new(255/255,0/255,0/255),Color3.new(255/255,85/255,0/255),Color3.new(218/255,218/255,0/255),Color3.new(0/255,190/255,0/255),Color3.new(0/255,85/255,255/255),Color3.new(0/255,0/255,127/255),Color3.new(170/255,0/255,255/255),Color3.new(0/255,204/255,204/255),Color3.new(255/255,85/255,127/255),Color3.new(0/255,0/255,0/255),Color3.new(255/255,255/255,255/255)}
+	game.Lighting.FogStart = 25
+	game.Lighting.FogEnd = 300
+	while true do
+		wait(0.5)
+		game.Lighting.FogColor = basics[math.random(1,#basics)]
+	end
 end)
