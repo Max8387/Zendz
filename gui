@@ -716,7 +716,7 @@ end)
 
 
 Wings.MouseButton1Down:connect(function()
-	loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ryand56/Scripts/Scripts/Wings.txt"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/ryand56/Scripts/Scripts/Wings.txt", true))()
 	WingsGui.Visible = true
 end)
 XWingsgui.MouseButton1Down:connect(function()
