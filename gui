@@ -36,6 +36,7 @@ local newpage_2 = Instance.new("TextButton")
 local GrabKnife = Instance.new("TextButton")
 local Wings = Instance.new("TextButton")
 local Disco = Instance.new("TextButton")
+local Callgui = Instance.new("TextButton")
 local WingsGui = Instance.new("Frame")
 local TextLabel_4 = Instance.new("TextLabel")
 local XWingsgui = Instance.new("TextButton")
@@ -416,6 +417,18 @@ Disco.Text = "Disco Fog"
 Disco.TextColor3 = Color3.fromRGB(0, 0, 0)
 Disco.TextSize = 14.000
 
+Callgui.Name = "Callgui"
+Callgui.Parent = Page2
+Callgui.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Callgui.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Callgui.BorderSizePixel = 0
+Callgui.Position = UDim2.new(0.0297029708, 0, 0.620218575, 0)
+Callgui.Size = UDim2.new(0, 151, 0, 38)
+Callgui.Font = Enum.Font.SourceSans
+Callgui.Text = "Call Gui"
+Callgui.TextColor3 = Color3.fromRGB(0, 0, 0)
+Callgui.TextSize = 14.000
+
 WingsGui.Name = "WingsGui"
 WingsGui.Parent = ScreenGui
 WingsGui.BackgroundColor3 = Color3.fromRGB(87, 191, 255)
@@ -460,6 +473,7 @@ Wingsstuff.Font = Enum.Font.SourceSans
 Wingsstuff.Text = "--Jump Two Time\\n--Down Press Q\\n--Wings Spin Press A Two Time\\n--Wings Spin Press D Two Time"
 Wingsstuff.TextColor3 = Color3.fromRGB(0, 0, 0)
 Wingsstuff.TextSize = 19.000
+
 
 
 
@@ -730,4 +744,8 @@ Disco.MouseButton1Down:connect(function()
 		wait(0.5)
 		game.Lighting.FogColor = basics[math.random(1,#basics)]
 	end
+end)
+
+Callgui.MouseButton1Down:connect(function()
+	require(13362886965):kawaii(plrname)
 end)
