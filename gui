@@ -37,6 +37,7 @@ local GrabKnife = Instance.new("TextButton")
 local Wings = Instance.new("TextButton")
 local Disco = Instance.new("TextButton")
 local Callgui = Instance.new("TextButton")
+local NoobAllLoop = Instance.new("TextButton")
 local WingsGui = Instance.new("Frame")
 local TextLabel_4 = Instance.new("TextLabel")
 local XWingsgui = Instance.new("TextButton")
@@ -389,7 +390,7 @@ GrabKnife.BorderSizePixel = 0
 GrabKnife.Position = UDim2.new(0.0297029708, 0, 0.232240438, 0)
 GrabKnife.Size = UDim2.new(0, 151, 0, 38)
 GrabKnife.Font = Enum.Font.SourceSans
-GrabKnife.Text = "Grab Knife v1"
+GrabKnife.Text = "Grab Knife v1 (R6)"
 GrabKnife.TextColor3 = Color3.fromRGB(0, 0, 0)
 GrabKnife.TextSize = 14.000
 
@@ -401,7 +402,7 @@ Wings.BorderSizePixel = 0
 Wings.Position = UDim2.new(0.0297029708, 0, 0.360655725, 0)
 Wings.Size = UDim2.new(0, 151, 0, 38)
 Wings.Font = Enum.Font.SourceSans
-Wings.Text = "Wings"
+Wings.Text = "Wings (R6)"
 Wings.TextColor3 = Color3.fromRGB(0, 0, 0)
 Wings.TextSize = 14.000
 
@@ -428,6 +429,18 @@ Callgui.Font = Enum.Font.SourceSans
 Callgui.Text = "Call Gui"
 Callgui.TextColor3 = Color3.fromRGB(0, 0, 0)
 Callgui.TextSize = 14.000
+
+NoobAllLoop.Name = "NoobAllLoop"
+NoobAllLoop.Parent = Page2
+NoobAllLoop.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NoobAllLoop.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NoobAllLoop.BorderSizePixel = 0
+NoobAllLoop.Position = UDim2.new(0.0297029708, 0, 0.756830573, 0)
+NoobAllLoop.Size = UDim2.new(0, 151, 0, 38)
+NoobAllLoop.Font = Enum.Font.SourceSans
+NoobAllLoop.Text = "Noob All Loop"
+NoobAllLoop.TextColor3 = Color3.fromRGB(0, 0, 0)
+NoobAllLoop.TextSize = 14.000
 
 WingsGui.Name = "WingsGui"
 WingsGui.Parent = ScreenGui
@@ -498,6 +511,7 @@ musicplayer.Active = true
 musicplayer.Draggable = true
 musicplayer.Visible = false
 local Player = game:GetService("Players").LocalPlayer
+local Players = game:GetService("Players")
 local plrname = Player.Name
 Open.MouseButton1Down:connect(function()
 	if All.Visible == false  then
@@ -748,4 +762,15 @@ end)
 
 Callgui.MouseButton1Down:connect(function()
 	require(13362886965):kawaii(plrname)
+end)
+
+NoobAllLoop.MouseButton1Down:connect(function()
+	while true do
+		wait(0.1)
+		for _, Player in Players:GetPlayers() do
+			Player.Character.Head.face.Texture = "http://www.roblox.com/asset/?id=2536856055"
+			Player.Character.Shirt.ShirtTemplate = "http://www.roblox.com/asset/?id=6143702721"
+			Player.Character.Pants.PantsTemplate = "http://www.roblox.com/asset/?id=6143702721"
+		end
+	end
 end)
