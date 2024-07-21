@@ -1,1 +1,193 @@
-local ScreenGui = Instance.new("ScreenGui") local Frame = Instance.new("Frame") local UICorner = Instance.new("UICorner") local UIGradient = Instance.new("UIGradient") local TextBox = Instance.new("TextBox") local UICorner_2 = Instance.new("UICorner") local TextButton = Instance.new("TextButton") local UICorner_3 = Instance.new("UICorner") local x = Instance.new("TextButton") local UICorner_4 = Instance.new("UICorner") ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui") ScreenGui.Enabled = true ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling Frame.Parent = ScreenGui Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255) Frame.BorderColor3 = Color3.fromRGB(0, 0, 0) Frame.BorderSizePixel = 0 Frame.Position = UDim2.new(0.148431525, 0, 0.390322566, 0) Frame.Size = UDim2.new(0, 290, 0, 101) UICorner.Parent = Frame UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(116, 165, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))} UIGradient.Parent = Frame TextBox.Parent = Frame TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255) TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0) TextBox.BorderSizePixel = 0 TextBox.Position = UDim2.new(0.110344827, 0, 0.108910888, 0) TextBox.Size = UDim2.new(0, 226, 0, 47) TextBox.Font = Enum.Font.SourceSans TextBox.PlaceholderText = "Bypassed chat here" TextBox.Text = "" TextBox.TextColor3 = Color3.fromRGB(0, 0, 0) TextBox.TextSize = 14.000 UICorner_2.Parent = TextBox TextButton.Parent = Frame TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255) TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0) TextButton.BorderSizePixel = 0 TextButton.Position = UDim2.new(0.193103448, 0, 0.673267305, 0) TextButton.Size = UDim2.new(0, 164, 0, 23) TextButton.Font = Enum.Font.SourceSans TextButton.Text = "Chat" TextButton.TextColor3 = Color3.fromRGB(0, 0, 0) TextButton.TextSize = 14.000 UICorner_3.Parent = TextButton x.Name = "x" x.Parent = Frame x.BackgroundColor3 = Color3.fromRGB(255, 0, 0) x.BorderColor3 = Color3.fromRGB(0, 0, 0) x.BorderSizePixel = 0 x.Position = UDim2.new(0.903448284, 0, 0, 0) x.Size = UDim2.new(0, 28, 0, 17) x.Font = Enum.Font.SourceSans x.Text = "X" x.TextColor3 = Color3.fromRGB(0, 0, 0) x.TextSize = 14.000 UICorner_4.Parent = x local tcs = game:GetService("TextChatService") local chat = tcs.ChatInputBarConfiguration.TargetTextChannel local function replace(str, find_str, replace_str) local escaped_find_str = find_str:gsub("[%-%^%$%(%)%%%.%[%]%*%+%-%?]", "%%%0") return str:gsub(escaped_find_str, replace_str) end local letters = { ["a"] = "Α", ["A"] = "α", ["b"] = "Β", ["B"] = "b", ["c"] = "С", ["C"] = "с", ["d"] = "D",-- ["D"] = "ԁ", ["e"] = "Ε", ["E"] = "ȩ", ["f"] = "Ғ", ["F"] = "Ғ", ["g"] = "ԍ", ["G"] = "ԍ", ["h"] = "Η", ["H"] = "һ", ["i"] = "I",-- ["I"] = "i", ["j"] = "Ј", ["J"] = "ј", ["k"] = "Κ", ["K"] = "κ", ["l"] = "L", ["m"] = "Μ", ["M"] = "м", ["n"] = "Ν", ["N"] = "n", ["o"] = "Ο", ["O"] = "ο", ["p"] = "Ρ", ["P"] = "р", ["q"] = "Ԛ",-- ["Q"] = "ԛ", ["r"] = "R",-- ["R"] = "r", ["s"] = "Ṡ", ["S"] = "ş", ["t"] = "Τ", ["T"] = "t", ["u"] = "ᴜ", ["U"] = "u", ["v"] = "Ѵ", ["V"] = "ѵ", ["w"] = "Ԝ", ["W"] = "ԝ", ["x"] = "Χ", ["X"] = "x", ["y"] = "Υ", ["Y"] = "y", ["z"] = "Ζ", ["Z"] = "ᴢ" } local function filter(message) for search, replacement in pairs(letters) do message = replace(message, search, replacement) end return message end local function clearlogsf() for i = 1, 19 do chat:SendAsync("") end end x.MouseButton1Click:Connect(function() clearlogsf() end) TextBox:GetPropertyChangedSignal("Text"):Connect(function() if #TextBox.Text > 0 then elseif #TextBox.Text > 200 or #TextBox.Text == 0 then end end) local function sendchat(msg) if tcs.ChatVersion == Enum.ChatVersion.LegacyChatService then game:GetService("ReplicatedStorage"):FindFirstChild("DefaultChatSystemChatEvents").SayMessageRequest:FireServer(msg, "All") else chat:SendAsync(msg) end end TextBox.FocusLost:Connect(function(enterPressed) if enterPressed then sendchat(filter(TextBox.Text)) TextBox.Text = "" end end) local UIS = game:GetService('UserInputService') local frame = Frame local dragToggle = nil local dragSpeed = 0.65 local dragStart = nil local startPos = nil local function updateInput(input) local delta = input.Position - dragStart local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y) game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play() end frame.InputBegan:Connect(function(input) if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then dragToggle = true dragStart = input.Position startPos = frame.Position input.Changed:Connect(function() if input.UserInputState == Enum.UserInputState.End then dragToggle = false end end) end end) UIS.InputChanged:Connect(function(input) if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then if dragToggle then updateInput(input) end end end) x.MouseButton1Up:Connect(function() ScreenGui:Destroy() end) TextButton.MouseButton1Up:Connect(function() sendchat(filter(TextBox.Text)) TextBox.Text = "" end)
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local UIGradient = Instance.new("UIGradient")
+local TextBox = Instance.new("TextBox")
+local UICorner_2 = Instance.new("UICorner")
+local TextButton = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local x = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Enabled = true
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.148431525, 0, 0.390322566, 0)
+Frame.Size = UDim2.new(0, 290, 0, 101)
+
+UICorner.Parent = Frame
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(116, 165, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+UIGradient.Parent = Frame
+
+TextBox.Parent = Frame
+TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.BorderSizePixel = 0
+TextBox.Position = UDim2.new(0.110344827, 0, 0.108910888, 0)
+TextBox.Size = UDim2.new(0, 226, 0, 47)
+TextBox.Font = Enum.Font.SourceSans
+TextBox.PlaceholderText = "Bypassed chat here"
+TextBox.Text = ""
+TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.TextSize = 14.000
+
+UICorner_2.Parent = TextBox
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.193103448, 0, 0.673267305, 0)
+TextButton.Size = UDim2.new(0, 164, 0, 23)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "Chat"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 14.000
+
+UICorner_3.Parent = TextButton
+
+x.Name = "x"
+x.Parent = Frame
+x.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+x.BorderColor3 = Color3.fromRGB(0, 0, 0)
+x.BorderSizePixel = 0
+x.Position = UDim2.new(0.903448284, 0, 0, 0)
+x.Size = UDim2.new(0, 28, 0, 17)
+x.Font = Enum.Font.SourceSans
+x.Text = "X"
+x.TextColor3 = Color3.fromRGB(0, 0, 0)
+x.TextSize = 14.000
+
+UICorner_4.Parent = x
+
+local tcs = game:GetService("TextChatService")
+local chat = tcs.ChatInputBarConfiguration.TargetTextChannel
+
+local function replace(str, find_str, replace_str)
+	local escaped_find_str = find_str:gsub("[%-%^%$%(%)%%%.%[%]%*%+%-%?]", "%%%0")
+	return str:gsub(escaped_find_str, replace_str)
+end
+
+local letters = {
+	["a"] = "Α", ["A"] = "α",
+	["b"] = "Β", ["B"] = "b",
+	["c"] = "С", ["C"] = "с",
+	["d"] = "D",-- ["D"] = "ԁ",
+	["e"] = "Ε", ["E"] = "ȩ",
+	["f"] = "Ғ", ["F"] = "Ғ",
+	["g"] = "ԍ", ["G"] = "ԍ",
+	["h"] = "Η", ["H"] = "һ",
+	["i"] = "I",-- ["I"] = "i",
+	["j"] = "Ј", ["J"] = "ј",
+	["k"] = "Κ", ["K"] = "κ",
+	["l"] = "L",-- ["L"] = "L",
+	["m"] = "Μ", ["M"] = "м",
+	["n"] = "Ν", ["N"] = "n",
+	["o"] = "Ο", ["O"] = "ο",
+	["p"] = "Ρ", ["P"] = "р",
+	["q"] = "Ԛ",-- ["Q"] = "ԛ",
+	["r"] = "R",-- ["R"] = "r",
+	["s"] = "Ṡ", ["S"] = "ş",
+	["t"] = "Τ", ["T"] = "t",
+	["u"] = "ᴜ", ["U"] = "u",
+	["v"] = "Ѵ", ["V"] = "ѵ",
+	["w"] = "Ԝ", ["W"] = "ԝ",
+	["x"] = "Χ", ["X"] = "x",
+	["y"] = "Υ", ["Y"] = "y",
+	["z"] = "Ζ", ["Z"] = "ᴢ"
+}
+
+local function filter(message)
+	for search, replacement in pairs(letters) do
+		message = replace(message, search, replacement)
+	end
+	return message
+end
+
+local function clearlogsf()
+	for i = 1, 19 do
+		chat:SendAsync("")
+	end
+end
+
+x.MouseButton1Click:Connect(function()
+	clearlogsf()
+end)
+
+TextBox:GetPropertyChangedSignal("Text"):Connect(function()
+	if #TextBox.Text > 0 then
+		-- You can add a UI element like ImageLabel here if necessary.
+	elseif #TextBox.Text > 200 or #TextBox.Text == 0 then
+		-- You can add a UI element like ImageLabel here if necessary.
+	end
+end)
+
+local function sendchat(msg)
+	if tcs.ChatVersion == Enum.ChatVersion.LegacyChatService then
+		game:GetService("ReplicatedStorage"):FindFirstChild("DefaultChatSystemChatEvents").SayMessageRequest:FireServer(msg, "All")
+	else
+		chat:SendAsync(msg)
+	end
+end
+
+TextBox.FocusLost:Connect(function(enterPressed)
+	if enterPressed then
+		sendchat(filter(TextBox.Text))
+		TextBox.Text = ""
+	end
+end)
+
+local UIS = game:GetService('UserInputService')
+local frame = Frame
+local dragToggle = nil
+local dragSpeed = 0.65
+local dragStart = nil
+local startPos = nil
+
+local function updateInput(input)
+	local delta = input.Position - dragStart
+	local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+end
+
+frame.InputBegan:Connect(function(input)
+	if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
+		dragToggle = true
+		dragStart = input.Position
+		startPos = frame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragToggle = false
+			end
+		end)
+	end
+end)
+
+UIS.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		if dragToggle then
+			updateInput(input)
+		end
+	end
+end)
+
+x.MouseButton1Up:Connect(function()
+	ScreenGui:Destroy()
+end)
+
+TextButton.MouseButton1Up:Connect(function()
+	sendchat(filter(TextBox.Text))
+	TextBox.Text = ""
+end)
