@@ -765,12 +765,31 @@ Callgui.MouseButton1Down:connect(function()
 end)
 
 NoobAllLoop.MouseButton1Down:connect(function()
-	while true do
-		wait(0.1)
-		for _, Player in Players:GetPlayers() do
-			Player.Character.Head.face.Texture = "http://www.roblox.com/asset/?id=2536856055"
-			Player.Character.Shirt.ShirtTemplate = "http://www.roblox.com/asset/?id=6143702721"
-			Player.Character.Pants.PantsTemplate = "http://www.roblox.com/asset/?id=6143702721"
-		end
-	end
+	local Players = game:GetService("Players")
+
+while true do
+    wait(0.1)
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player.Character then
+            local character = player.Character
+            local head = character:FindFirstChild("Head")
+            local face = head and head:FindFirstChild("face")
+            local shirt = character:FindFirstChildOfClass("Shirt")
+            local pants = character:FindFirstChildOfClass("Pants")
+
+            if face then
+                face.Texture = "http://www.roblox.com/asset/?id=2536856055"
+            end
+
+            if shirt then
+                shirt.ShirtTemplate = "http://www.roblox.com/asset/?id=6143702721"
+            end
+
+            if pants then
+                pants.PantsTemplate = "http://www.roblox.com/asset/?id=6143702721"
+            end
+        end
+    end
+end
+
 end)
