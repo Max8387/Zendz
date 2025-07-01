@@ -1,0 +1,786 @@
+-- Google-Style UI Library
+-- Usage: Loadstring(game:HttpGet("URL_TO_THIS_SCRIPT"))()
+
+local Library = {}
+Library.__index = Library
+
+-- Color palette inspired by Google's Material Design
+local Colors = {
+    Primary = Color3.fromRGB(66, 133, 244),
+    PrimaryDark = Color3.fromRGB(51, 103, 214),
+    Accent = Color3.fromRGB(255, 215, 64),
+    Text = Color3.fromRGB(32, 33, 36),
+    SecondaryText = Color3.fromRGB(95, 99, 104),
+    Background = Color3.fromRGB(248, 249, 250),
+    Card = Color3.fromRGB(255, 255, 255),
+    Error = Color3.fromRGB(234, 67, 53),
+    Success = Color3.fromRGB(52, 168, 83)
+}
+
+-- Utility functions
+local function Create(class, props)
+    local instance = Instance.new(class)
+    for prop, value in pairs(props) do
+        if prop == "Parent" then
+            instance.Parent = value
+        else
+            instance[prop] = value
+        end
+    end
+    return instance
+end
+
+local function RippleEffect(button)
+    local ripple = Create("Frame", {
+        Name = "Ripple",
+        BackgroundColor3 = Color3.new(1, 1, 1),
+        BackgroundTransparency = 0.8,
+        Size = UDim2.new(0, 0, 0, 0),
+        Position = UDim2.new(0.5, 0, 0.5, 0),
+        AnchorPoint = Vector2.new(0.5, 0.5),
+        Parent = button,
+        ZIndex = 2
+    })
+    
+    local mouse = game:GetService("Players").LocalPlayer:GetMouse()
+    local pos = UDim2.new(0, mouse.X - button.AbsolutePosition.X, 0, mouse.Y - button.AbsolutePosition.Y)
+    ripple.Position = pos
+    
+    local size = math.max(button.AbsoluteSize.X, button.AbsoluteSize.Y) * 1.5
+    
+    ripple:TweenSize(UDim2.new(0, size, 0, size), "Out", "Quad", 0.5, true)
+    ripple:TweenPosition(UDim2.new(0.5, -size/2, 0.5, -size/2), "Out", "Quad", 0.5, true)
+    
+    spawn(function()
+        wait(0.5)
+        ripple.BackgroundTransparency = 1
+        wait(0.5)
+        ripple:Destroy()
+    end)
+end
+
+function Library:CreateWindow(title)
+    local ScreenGui = Create("ScreenGui", {
+        Name = "GoogleUILib",
+        ResetOnSpawn = false,
+        ZIndexBehavior = Enum.ZIndexBehavior.Global
+    })
+    
+    local MainFrame = Create("Frame", {
+        Name = "MainFrame",
+        Size = UDim2.new(0, 400, 0, 500),
+        Position = UDim2.new(0.5, -200, 0.5, -250),
+        AnchorPoint = Vector2.new(0.5, 0.5),
+        BackgroundColor3 = Colors.Card,
+        BorderSizePixel = 0,
+        ClipsDescendants = true,
+        Parent = ScreenGui,
+        ZIndex = 1
+    })
+    
+    Create("UICorner", {
+        CornerRadius = UDim.new(0, 12),
+        Parent = MainFrame
+    })
+    
+    Create("UIStroke", {
+        Color = Color3.fromRGB(218, 220, 224),
+        Thickness = 1,
+        Parent = MainFrame
+    })
+    
+    local Shadow = Create("ImageLabel", {
+        Name = "Shadow",
+        Size = UDim2.new(1, 12, 1, 12),
+        Position = UDim2.new(0.5, -6, 0.5, -6),
+        AnchorPoint = Vector2.new(0.5, 0.5),
+        BackgroundTransparency = 1,
+        Image = "rbxassetid://1316045217",
+        ImageColor3 = Color3.fromRGB(0, 0, 0),
+        ImageTransparency = 0.8,
+        ScaleType = Enum.ScaleType.Slice,
+        SliceCenter = Rect.new(10, 10, 118, 118),
+        Parent = MainFrame,
+        ZIndex = 0
+    })
+    
+    local Header = Create("Frame", {
+        Name = "Header",
+        Size = UDim2.new(1, 0, 0, 56),
+        BackgroundColor3 = Colors.Primary,
+        BorderSizePixel = 0,
+        Parent = MainFrame,
+        ZIndex = 2
+    })
+    
+    Create("UICorner", {
+        CornerRadius = UDim.new(0, 12),
+        Parent = Header
+    })
+    
+    Create("UIPadding", {
+        PaddingLeft = UDim.new(0, 16),
+        PaddingRight = UDim.new(0, 16),
+        Parent = Header
+    })
+    
+    local Title = Create("TextLabel", {
+        Name = "Title",
+        Size = UDim2.new(1, 0, 1, 0),
+        BackgroundTransparency = 1,
+        Font = Enum.Font.GothamBold,
+        Text = title or "Google UI",
+        TextColor3 = Color3.new(1, 1, 1),
+        TextSize = 20,
+        TextXAlignment = Enum.TextXAlignment.Left,
+        Parent = Header,
+        ZIndex = 3
+    })
+    
+    local CloseButton = Create("TextButton", {
+        Name = "CloseButton",
+        Size = UDim2.new(0, 24, 0, 24),
+        Position = UDim2.new(1, -24, 0.5, -12),
+        AnchorPoint = Vector2.new(1, 0.5),
+        BackgroundTransparency = 1,
+        Font = Enum.Font.GothamBold,
+        Text = "×",
+        TextColor3 = Color3.new(1, 1, 1),
+        TextSize = 24,
+        Parent = Header,
+        ZIndex = 3
+    })
+    
+    CloseButton.MouseButton1Click:Connect(function()
+        ScreenGui:Destroy()
+    end)
+    
+    local Content = Create("ScrollingFrame", {
+        Name = "Content",
+        Size = UDim2.new(1, 0, 1, -56),
+        Position = UDim2.new(0, 0, 0, 56),
+        BackgroundTransparency = 1,
+        BorderSizePixel = 0,
+        ScrollBarThickness = 3,
+        ScrollBarImageColor3 = Colors.SecondaryText,
+        CanvasSize = UDim2.new(0, 0, 0, 0),
+        Parent = MainFrame,
+        ZIndex = 2
+    })
+    
+    Create("UIPadding", {
+        PaddingTop = UDim.new(0, 16),
+        PaddingBottom = UDim.new(0, 16),
+        PaddingLeft = UDim.new(0, 16),
+        PaddingRight = UDim.new(0, 16),
+        Parent = Content
+    })
+    
+    Create("UIListLayout", {
+        Name = "ListLayout",
+        SortOrder = Enum.SortOrder.LayoutOrder,
+        Padding = UDim.new(0, 16),
+        Parent = Content
+    })
+    
+    local window = {
+        ScreenGui = ScreenGui,
+        MainFrame = MainFrame,
+        Content = Content
+    }
+    
+    -- Make window draggable
+    local UserInputService = game:GetService("UserInputService")
+    local dragging
+    local dragInput
+    local dragStart
+    local startPos
+    
+    local function update(input)
+        local delta = input.Position - dragStart
+        window.MainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+    
+    Header.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = window.MainFrame.Position
+            
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+    
+    Header.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+    
+    UserInputService.InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            update(input)
+        end
+    end)
+    
+    -- Update canvas size automatically
+    Content.ListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+        Content.CanvasSize = UDim2.new(0, 0, 0, Content.ListLayout.AbsoluteContentSize.Y + 32)
+    end)
+    
+    setmetatable(window, Library)
+    return window
+end
+
+function Library:CreateButton(props)
+    local Button = Create("TextButton", {
+        Name = "Button",
+        Size = UDim2.new(1, 0, 0, 40),
+        BackgroundColor3 = Colors.Primary,
+        BorderSizePixel = 0,
+        AutoButtonColor = false,
+        Font = Enum.Font.GothamMedium,
+        Text = props.Text or "Button",
+        TextColor3 = Color3.new(1, 1, 1),
+        TextSize = 14,
+        Parent = self.Content,
+        LayoutOrder = props.LayoutOrder or 1
+    })
+    
+    Create("UICorner", {
+        CornerRadius = UDim.new(0, 8),
+        Parent = Button
+    })
+    
+    Create("UIPadding", {
+        PaddingLeft = UDim.new(0, 16),
+        PaddingRight = UDim.new(0, 16),
+        Parent = Button
+    })
+    
+    Button.MouseEnter:Connect(function()
+        game:GetService("TweenService"):Create(Button, TweenInfo.new(0.2), {BackgroundColor3 = Colors.PrimaryDark}):Play()
+    end)
+    
+    Button.MouseLeave:Connect(function()
+        game:GetService("TweenService"):Create(Button, TweenInfo.new(0.2), {BackgroundColor3 = Colors.Primary}):Play()
+    end)
+    
+    Button.MouseButton1Click:Connect(function()
+        RippleEffect(Button)
+        if props.Callback then
+            props.Callback()
+        end
+    end)
+    
+    return Button
+end
+
+function Library:CreateToggle(props)
+    local Toggle = Create("Frame", {
+        Name = "Toggle",
+        Size = UDim2.new(1, 0, 0, 40),
+        BackgroundTransparency = 1,
+        Parent = self.Content,
+        LayoutOrder = props.LayoutOrder or 1
+    })
+    
+    local Label = Create("TextLabel", {
+        Name = "Label",
+        Size = UDim2.new(1, -60, 1, 0),
+        BackgroundTransparency = 1,
+        Font = Enum.Font.GothamMedium,
+        Text = props.Text or "Toggle",
+        TextColor3 = Colors.Text,
+        TextSize = 14,
+        TextXAlignment = Enum.TextXAlignment.Left,
+        Parent = Toggle
+    })
+    
+    local ToggleButton = Create("TextButton", {
+        Name = "ToggleButton",
+        Size = UDim2.new(0, 40, 0, 20),
+        Position = UDim2.new(1, -40, 0.5, -10),
+        AnchorPoint = Vector2.new(1, 0.5),
+        BackgroundColor3 = Color3.fromRGB(189, 193, 198),
+        AutoButtonColor = false,
+        Parent = Toggle
+    })
+    
+    Create("UICorner", {
+        CornerRadius = UDim.new(0, 10),
+        Parent = ToggleButton
+    })
+    
+    local ToggleKnob = Create("Frame", {
+        Name = "ToggleKnob",
+        Size = UDim2.new(0, 16, 0, 16),
+        Position = UDim2.new(0, 2, 0.5, -8),
+        AnchorPoint = Vector2.new(0, 0.5),
+        BackgroundColor3 = Color3.new(1, 1, 1),
+        Parent = ToggleButton
+    })
+    
+    Create("UICorner", {
+        CornerRadius = UDim.new(0, 8),
+        Parent = ToggleKnob
+    })
+    
+    local state = props.Default or false
+    
+    local function updateToggle()
+        if state then
+            game:GetService("TweenService"):Create(ToggleButton, TweenInfo.new(0.2), {BackgroundColor3 = Colors.Primary}):Play()
+            game:GetService("TweenService"):Create(ToggleKnob, TweenInfo.new(0.2), {Position = UDim2.new(1, -18, 0.5, -8)}):Play()
+        else
+            game:GetService("TweenService"):Create(ToggleButton, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(189, 193, 198)}):Play()
+            game:GetService("TweenService"):Create(ToggleKnob, TweenInfo.new(0.2), {Position = UDim2.new(0, 2, 0.5, -8)}):Play()
+        end
+    end
+    
+    updateToggle()
+    
+    ToggleButton.MouseButton1Click:Connect(function()
+        state = not state
+        updateToggle()
+        if props.Callback then
+            props.Callback(state)
+        end
+    end)
+    
+    return {
+        Set = function(newState)
+            state = newState
+            updateToggle()
+        end,
+        Get = function()
+            return state
+        end
+    }
+end
+
+function Library:CreateSlider(props)
+    local Slider = Create("Frame", {
+        Name = "Slider",
+        Size = UDim2.new(1, 0, 0, 60),
+        BackgroundTransparency = 1,
+        Parent = self.Content,
+        LayoutOrder = props.LayoutOrder or 1
+    })
+    
+    local Label = Create("TextLabel", {
+        Name = "Label",
+        Size = UDim2.new(1, 0, 0, 20),
+        BackgroundTransparency = 1,
+        Font = Enum.Font.GothamMedium,
+        Text = props.Text or "Slider",
+        TextColor3 = Colors.Text,
+        TextSize = 14,
+        TextXAlignment = Enum.TextXAlignment.Left,
+        Parent = Slider
+    })
+    
+    local ValueLabel = Create("TextLabel", {
+        Name = "ValueLabel",
+        Size = UDim2.new(0, 60, 0, 20),
+        Position = UDim2.new(1, 0, 0, 0),
+        AnchorPoint = Vector2.new(1, 0),
+        BackgroundTransparency = 1,
+        Font = Enum.Font.GothamMedium,
+        Text = tostring(props.Default or props.Min or 0),
+        TextColor3 = Colors.SecondaryText,
+        TextSize = 14,
+        TextXAlignment = Enum.TextXAlignment.Right,
+        Parent = Slider
+    })
+    
+    local Track = Create("Frame", {
+        Name = "Track",
+        Size = UDim2.new(1, 0, 0, 4),
+        Position = UDim2.new(0, 0, 1, -10),
+        AnchorPoint = Vector2.new(0, 1),
+        BackgroundColor3 = Color3.fromRGB(232, 234, 237),
+        Parent = Slider
+    })
+    
+    Create("UICorner", {
+        CornerRadius = UDim.new(0, 2),
+        Parent = Track
+    })
+    
+    local Fill = Create("Frame", {
+        Name = "Fill",
+        Size = UDim2.new(0.5, 0, 1, 0),
+        BackgroundColor3 = Colors.Primary,
+        Parent = Track
+    })
+    
+    Create("UICorner", {
+        CornerRadius = UDim.new(0, 2),
+        Parent = Fill
+    })
+    
+    local Knob = Create("Frame", {
+        Name = "Knob",
+        Size = UDim2.new(0, 16, 0, 16),
+        Position = UDim2.new(0.5, -8, 0.5, -8),
+        AnchorPoint = Vector2.new(0.5, 0.5),
+        BackgroundColor3 = Colors.Primary,
+        Parent = Track
+    })
+    
+    Create("UICorner", {
+        CornerRadius = UDim.new(0, 8),
+        Parent = Knob
+    })
+    
+    Create("UIStroke", {
+        Color = Color3.new(1, 1, 1),
+        Thickness = 2,
+        Parent = Knob
+    })
+    
+    local min = props.Min or 0
+    local max = props.Max or 100
+    local value = props.Default or min
+    
+    local function updateSlider(newValue)
+        value = math.clamp(newValue, min, max)
+        local ratio = (value - min) / (max - min)
+        Fill.Size = UDim2.new(ratio, 0, 1, 0)
+        Knob.Position = UDim2.new(ratio, -8, 0.5, -8)
+        ValueLabel.Text = tostring(math.floor(value * 100) / 100)
+        
+        if props.Callback then
+            props.Callback(value)
+        end
+    end
+    
+    updateSlider(value)
+    
+    local dragging = false
+    
+    Knob.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = true
+        end
+    end)
+    
+    game:GetService("UserInputService").InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = false
+        end
+    end)
+    
+    game:GetService("UserInputService").InputChanged:Connect(function(input)
+        if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+            local mousePos = game:GetService("Players").LocalPlayer:GetMouse().X
+            local absolutePos = Track.AbsolutePosition.X
+            local absoluteSize = Track.AbsoluteSize.X
+            local relativePos = math.clamp(mousePos - absolutePos, 0, absoluteSize)
+            local ratio = relativePos / absoluteSize
+            local newValue = min + (max - min) * ratio
+            updateSlider(newValue)
+        end
+    end)
+    
+    return {
+        Set = function(newValue)
+            updateSlider(newValue)
+        end,
+        Get = function()
+            return value
+        end
+    }
+end
+
+function Library:CreateLabel(props)
+    local Label = Create("TextLabel", {
+        Name = "Label",
+        Size = UDim2.new(1, 0, 0, 20),
+        BackgroundTransparency = 1,
+        Font = Enum.Font.GothamMedium,
+        Text = props.Text or "Label",
+        TextColor3 = props.Color or Colors.Text,
+        TextSize = props.TextSize or 14,
+        TextXAlignment = props.Alignment or Enum.TextXAlignment.Left,
+        Parent = self.Content,
+        LayoutOrder = props.LayoutOrder or 1
+    })
+    
+    return Label
+end
+
+function Library:CreateTextBox(props)
+    local TextBoxContainer = Create("Frame", {
+        Name = "TextBoxContainer",
+        Size = UDim2.new(1, 0, 0, 40),
+        BackgroundTransparency = 1,
+        Parent = self.Content,
+        LayoutOrder = props.LayoutOrder or 1
+    })
+    
+    local Label = Create("TextLabel", {
+        Name = "Label",
+        Size = UDim2.new(1, 0, 0, 16),
+        BackgroundTransparency = 1,
+        Font = Enum.Font.GothamMedium,
+        Text = props.Text or "Input",
+        TextColor3 = Colors.Text,
+        TextSize = 12,
+        TextXAlignment = Enum.TextXAlignment.Left,
+        Parent = TextBoxContainer
+    })
+    
+    local TextBox = Create("TextBox", {
+        Name = "TextBox",
+        Size = UDim2.new(1, 0, 0, 32),
+        Position = UDim2.new(0, 0, 0, 16),
+        BackgroundColor3 = Color3.new(1, 1, 1),
+        BorderSizePixel = 0,
+        Font = Enum.Font.GothamMedium,
+        PlaceholderText = props.Placeholder or "",
+        Text = props.Default or "",
+        TextColor3 = Colors.Text,
+        TextSize = 14,
+        TextXAlignment = Enum.TextXAlignment.Left,
+        Parent = TextBoxContainer
+    })
+    
+    Create("UICorner", {
+        CornerRadius = UDim.new(0, 4),
+        Parent = TextBox
+    })
+    
+    Create("UIStroke", {
+        Color = Color3.fromRGB(218, 220, 224),
+        Thickness = 1,
+        Parent = TextBox
+    })
+    
+    Create("UIPadding", {
+        PaddingLeft = UDim.new(0, 8),
+        PaddingRight = UDim.new(0, 8),
+        Parent = TextBox
+    })
+    
+    TextBox.Focused:Connect(function()
+        game:GetService("TweenService"):Create(TextBox.UIStroke, TweenInfo.new(0.2), {Color = Colors.Primary, Thickness = 2}):Play()
+    end)
+    
+    TextBox.FocusLost:Connect(function()
+        game:GetService("TweenService"):Create(TextBox.UIStroke, TweenInfo.new(0.2), {Color = Color3.fromRGB(218, 220, 224), Thickness = 1}):Play()
+        if props.Callback then
+            props.Callback(TextBox.Text)
+        end
+    end)
+    
+    return TextBox
+end
+
+function Library:CreateDropdown(props)
+    local Dropdown = Create("Frame", {
+        Name = "Dropdown",
+        Size = UDim2.new(1, 0, 0, 40),
+        BackgroundTransparency = 1,
+        Parent = self.Content,
+        LayoutOrder = props.LayoutOrder or 1
+    })
+    
+    local Label = Create("TextLabel", {
+        Name = "Label",
+        Size = UDim2.new(1, 0, 0, 16),
+        BackgroundTransparency = 1,
+        Font = Enum.Font.GothamMedium,
+        Text = props.Text or "Dropdown",
+        TextColor3 = Colors.Text,
+        TextSize = 12,
+        TextXAlignment = Enum.TextXAlignment.Left,
+        Parent = Dropdown
+    })
+    
+    local MainButton = Create("TextButton", {
+        Name = "MainButton",
+        Size = UDim2.new(1, 0, 0, 32),
+        Position = UDim2.new(0, 0, 0, 16),
+        BackgroundColor3 = Color3.new(1, 1, 1),
+        BorderSizePixel = 0,
+        AutoButtonColor = false,
+        Font = Enum.Font.GothamMedium,
+        Text = props.Default or "Select",
+        TextColor3 = Colors.Text,
+        TextSize = 14,
+        TextXAlignment = Enum.TextXAlignment.Left,
+        Parent = Dropdown
+    })
+    
+    Create("UICorner", {
+        CornerRadius = UDim.new(0, 4),
+        Parent = MainButton
+    })
+    
+    Create("UIStroke", {
+        Color = Color3.fromRGB(218, 220, 224),
+        Thickness = 1,
+        Parent = MainButton
+    })
+    
+    Create("UIPadding", {
+        PaddingLeft = UDim.new(0, 8),
+        PaddingRight = UDim.new(0, 8),
+        Parent = MainButton
+    })
+    
+    local Arrow = Create("ImageLabel", {
+        Name = "Arrow",
+        Size = UDim2.new(0, 16, 0, 16),
+        Position = UDim2.new(1, -20, 0.5, -8),
+        AnchorPoint = Vector2.new(1, 0.5),
+        BackgroundTransparency = 1,
+        Image = "rbxassetid://71659683",
+        ImageColor3 = Colors.SecondaryText,
+        Rotation = 90,
+        Parent = MainButton
+    })
+    
+    local OptionsFrame = Create("ScrollingFrame", {
+        Name = "OptionsFrame",
+        Size = UDim2.new(1, 0, 0, 0),
+        Position = UDim2.new(0, 0, 0, 48),
+        BackgroundColor3 = Color3.new(1, 1, 1),
+        BorderSizePixel = 0,
+        ScrollBarThickness = 0,
+        CanvasSize = UDim2.new(0, 0, 0, 0),
+        Visible = false,
+        Parent = Dropdown
+    })
+    
+    Create("UICorner", {
+        CornerRadius = UDim.new(0, 4),
+        Parent = OptionsFrame
+    })
+    
+    Create("UIStroke", {
+        Color = Color3.fromRGB(218, 220, 224),
+        Thickness = 1,
+        Parent = OptionsFrame
+    })
+    
+    Create("UIListLayout", {
+        SortOrder = Enum.SortOrder.LayoutOrder,
+        Parent = OptionsFrame
+    })
+    
+    local options = props.Options or {}
+    local selected = props.Default
+    local isOpen = false
+    
+    local function updateOptions()
+        OptionsFrame:ClearAllChildren()
+        
+        for i, option in ipairs(options) do
+            local OptionButton = Create("TextButton", {
+                Name = option,
+                Size = UDim2.new(1, -16, 0, 32),
+                BackgroundColor3 = Color3.new(1, 1, 1),
+                BorderSizePixel = 0,
+                AutoButtonColor = false,
+                Font = Enum.Font.GothamMedium,
+                Text = option,
+                TextColor3 = Colors.Text,
+                TextSize = 14,
+                TextXAlignment = Enum.TextXAlignment.Left,
+                LayoutOrder = i,
+                Parent = OptionsFrame
+            })
+            
+            Create("UIPadding", {
+                PaddingLeft = UDim.new(0, 8),
+                PaddingRight = UDim.new(0, 8),
+                Parent = OptionButton
+            })
+            
+            OptionButton.MouseEnter:Connect(function()
+                game:GetService("TweenService"):Create(OptionButton, TweenInfo.new(0.1), {BackgroundColor3 = Color3.fromRGB(248, 249, 250)}):Play()
+            end)
+            
+            OptionButton.MouseLeave:Connect(function()
+                game:GetService("TweenService"):Create(OptionButton, TweenInfo.new(0.1), {BackgroundColor3 = Color3.new(1, 1, 1)}):Play()
+            end)
+            
+            OptionButton.MouseButton1Click:Connect(function()
+                selected = option
+                MainButton.Text = option
+                toggleDropdown()
+                if props.Callback then
+                    props.Callback(option)
+                end
+            end)
+        end
+        
+        OptionsFrame.CanvasSize = UDim2.new(0, 0, 0, #options * 32)
+    end
+    
+    local function toggleDropdown()
+        isOpen = not isOpen
+        OptionsFrame.Visible = isOpen
+        if isOpen then
+            game:GetService("TweenService"):Create(OptionsFrame, TweenInfo.new(0.2), {Size = UDim2.new(1, 0, 0, math.min(#options * 32, 160)):Play()
+            game:GetService("TweenService"):Create(Arrow, TweenInfo.new(0.2), {Rotation = 270}):Play()
+            game:GetService("TweenService"):Create(MainButton.UIStroke, TweenInfo.new(0.2), {Color = Colors.Primary, Thickness = 2}):Play()
+        else
+            game:GetService("TweenService"):Create(OptionsFrame, TweenInfo.new(0.2), {Size = UDim2.new(1, 0, 0, 0)}:Play()
+            game:GetService("TweenService"):Create(Arrow, TweenInfo.new(0.2), {Rotation = 90}):Play()
+            game:GetService("TweenService"):Create(MainButton.UIStroke, TweenInfo.new(0.2), {Color = Color3.fromRGB(218, 220, 224), Thickness = 1}):Play()
+        end
+    end
+    
+    MainButton.MouseButton1Click:Connect(function()
+        toggleDropdown()
+    end)
+    
+    updateOptions()
+    
+    return {
+        SetOptions = function(newOptions)
+            options = newOptions
+            updateOptions()
+        end,
+        GetSelected = function()
+            return selected
+        end,
+        SetSelected = function(newSelected)
+            selected = newSelected
+            MainButton.Text = newSelected
+        end
+    }
+end
+
+function Library:CreateDivider()
+    local Divider = Create("Frame", {
+        Name = "Divider",
+        Size = UDim2.new(1, 0, 0, 1),
+        BackgroundColor3 = Color3.fromRGB(232, 234, 237),
+        BorderSizePixel = 0,
+        Parent = self.Content
+    })
+    
+    return Divider
+end
+
+-- Initialize the library
+local function Init()
+    local lib = {}
+    
+    function lib:CreateWindow(title)
+        return Library:CreateWindow(title)
+    end
+    
+    return lib
+end
+
+return Init()
